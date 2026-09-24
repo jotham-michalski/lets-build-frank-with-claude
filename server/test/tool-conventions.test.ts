@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { tools } from "../src/tools/index.js";
+import { ToolError } from "../src/tools/define.js";
 
 // Mirrors .claude/agents/tool-conventions.md's checklist so the automated
 // gate and the haiku reviewer agent never disagree about what's in policy.
@@ -37,9 +38,20 @@ describe("ADR-002 tool conventions", () => {
     const parsedEmptyInput = tool.inputSchema.safeParse({});
     if (!parsedEmptyInput.success) return;
 
-    const output = await tool.handler(parsedEmptyInput.data);
-    expect(output.summary).toEqual(expect.any(String));
-    expect(Object.keys(output).length).toBeGreaterThan(1);
+    // Calling the handler directly (as this test does) bypasses the MCP SDK
+    // entirely, so nothing here catches a thrown error but the test itself.
+    // A tool is allowed to fail closed (e.g. list_resources with no Azure
+    // configured) — but only via ToolError, with a message a human wrote, not
+    // whatever an underlying library or a raw stack trace happened to say.
+    try {
+      const output = await tool.handler(parsedEmptyInput.data);
+      expect(output.summary).toEqual(expect.any(String));
+      expect(Object.keys(output).length).toBeGreaterThan(1);
+    } catch (error) {
+      expect(error).toBeInstanceOf(ToolError);
+      const message = (error as ToolError).message;
+      expect(message).not.toMatch(/\bat \S+:\d+:\d+|node_modules|\.ts:\d+/);
+    }
   });
 
   it.each(tools)("$name: has a corresponding test file", (tool) => {

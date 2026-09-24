@@ -1,8 +1,9 @@
 # ADR-004: Hosting — Container Apps for Frank, Static Web Apps for the UI
 
 **Status:** Accepted — **partially superseded by ADR-006** (Static Web Apps hosting and
-cross-origin UI wiring only; the managed identity, scale-to-zero, `/healthz`
-probe, one-RG-per-student and single-region decisions remain in force)
+cross-origin UI wiring) **and by ADR-009** (the managed identity /
+no-role-assignments clause); scale-to-zero, `/healthz` probe,
+one-RG-per-student and single-region decisions remain in force
 **Date:** 2026-08
 
 ## Context

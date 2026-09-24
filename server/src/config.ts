@@ -13,4 +13,8 @@ export const config = {
   version: pkg.version,
   // Matches the root Dockerfile, which copies ui/dist to /app/public.
   consoleDir: path.join(packageRoot, "public"),
+  // ADR-009. Optional: unset locally and in CI, where list_resources fails
+  // closed rather than the whole server refusing to boot.
+  azureSubscriptionId: process.env.AZURE_SUBSCRIPTION_ID,
+  azureResourceGroup: process.env.AZURE_RESOURCE_GROUP,
 };

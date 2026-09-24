@@ -11,6 +11,15 @@ export interface ToolOutput {
   [key: string]: unknown;
 }
 
+/**
+ * A handler throws this, and only this, with a message already written in
+ * plain language for whoever calls the tool. The MCP SDK catches any thrown
+ * error at the protocol layer and turns it into an `isError` result using
+ * `.message` — `ToolError` exists so that message is one a tool author wrote
+ * on purpose, not whatever an underlying library happened to say (ADR-002).
+ */
+export class ToolError extends Error {}
+
 export interface ToolDefinition<
   Input extends z.ZodObject<z.ZodRawShape, "strict">,
   Output extends ToolOutput,
