@@ -227,8 +227,8 @@ That's the point of the course.
 | [ADR-006](docs/adr/ADR-006-classroom-credentials.md) | Classroom credentials + one container (partly supersedes 003, 004, 005) | Proposed |
 | [ADR-007](docs/adr/ADR-007-mcp-endpoint-authentication.md) | MCP endpoint requires caller authentication | **Rejected** — see the ADR for what that accepts |
 | [ADR-010](docs/adr/ADR-010-one-open-credential.md) | One deliberately open classroom credential | Proposed |
+| [ADR-009](docs/adr/ADR-009-frank-reads-own-resource-group.md) | Let Frank read what is running in the classroom resource group | Proposed |
 | ADR-008 | Connect Frank to the GitHub pipeline | **You write this in class** |
-| ADR-009 | Let Frank read what is running in his own resource group | **You write this in class** |
 
 ## Ground rules (security)
 

@@ -1,5 +1,6 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { getStatus } from "./get_status.js";
+import { listResources } from "./list_resources.js";
 import type { ToolDefinition, ToolOutput } from "./define.js";
 import type { z } from "zod";
 
@@ -7,7 +8,7 @@ import type { z } from "zod";
 export const tools: ToolDefinition<
   z.ZodObject<z.ZodRawShape, "strict">,
   ToolOutput
->[] = [getStatus];
+>[] = [getStatus, listResources];
 
 /** Registers every tool in `tools` on the given MCP server instance. */
 export function registerTools(server: McpServer): void {
