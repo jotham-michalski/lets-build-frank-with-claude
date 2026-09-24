@@ -1,9 +1,8 @@
 # ADR-009: Frank reads the classroom resource group
 
-**Status:** Proposed — **formalizes, and supersedes the identity clause of,
+**Status:** Accepted — **formalizes, and supersedes the identity clause of,
 ADR-004** ("system-assigned managed identity... no role assignments"): ADR-010
-already replaced that in practice, this ADR just says so. On acceptance,
-update ADR-004's Status line and both README tables.
+already replaced that in practice, this ADR just says so.
 **Date:** 2026-09
 
 ## Context
